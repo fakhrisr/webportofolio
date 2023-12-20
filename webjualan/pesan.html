@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Formulir Pemesanan</title>
+  <style>
+    body {
+        background-color: darkgray;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    form {
+      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #pesan-konfirmasi {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Formulir Pemesanan</h1>
+  
+  <form onsubmit="return submitForm(event)">
+    <label for="nama">Nama:</label>
+    <input type="text" id="nama" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+
+    <label for="alamat">Alamat:</label>
+    <textarea id="alamat" required></textarea>
+
+    <label for="produk">Produk:</label>
+    <select id="produk" required>
+      <option value="">Pilih Produk</option>
+      <option value="ayambakarpedasmanis">ayambakarpedasmanis</option>
+      <option value="ayambakarspesial">ayambakarspesial</option>
+      <option value="ayambakarmanis">ayambakarmanis</option>
+      <option value="ayambakarpedas">ayambakarpedas</option>
+    </select>
+
+    <label for="jumlah">Jumlah:</label>
+    <input type="number" id="jumlah" min="1" required>
+
+    <input type="submit" value="Pesan">
+  </form>
+
+  <div id="pesan-konfirmasi" style="display: none;">
+    <h2>Pesanan Anda berhasil diterima!</h2>
+    <p id="detail-pesanan"></p>
+  </div>
+
+    <script>
+    function submitForm(event) {
+      event.preventDefault(); // Mencegah pengiriman formulir ke server
+
+      var nama = document.getElementById("nama").value;
+      var email = document.getElementById("email").value;
+      var alamat = document.getElementById("alamat").value;
+      var produk = document.getElementById("produk").value;
+      var jumlah = document.getElementById("jumlah").value;
+
+      var detailPesanan = "Nama: " + nama + "<br>" +
+                          "Email: " + email + "<br>" +
+                          "Alamat: " + alamat + "<br>" +
+                          "Produk: " + produk + "<br>" +
+                          "Jumlah: " + jumlah;
+      document.getElementById("detail-pesanan").innerHTML = detailPesanan;
+      document.getElementById("pesan-konfirmasi").style.display = "block";
+
+      document.getElementById("nama").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("alamat").value = "";
+      document.getElementById("produk").value = "";
+      document.getElementById("jumlah").value = "";
+
+      return false;
+    }
+ </script>
+ 
+    <a href="index.html">Kembali ke Halaman Awal</a>
+
+</body>
+</html>
